@@ -97,7 +97,7 @@
 .theme-menu__button:disabled::before {
   content: "▶";
   position: absolute;
-  animation: pointer 0.5s infinite ease-in-out alternate;
+  animation: play 0.5s infinite ease-in-out alternate;
   width: 14px;
   height: 14px;
   inset-inline-start: -20px;

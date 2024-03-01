@@ -42,28 +42,28 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 25px;
+  gap: 20px;
   border: 2px solid var(--theme-main-color, #000);
   padding: clamp(7.5rem, 6.3462rem + 4.9231vw, 8.5rem) 0 25px;
-  font-family: var(--accent-font-family);
+  font-family: var(--accent-font-family, "fantasy");
   text-transform: uppercase;
   background-color: var(--background-color, #fff);
 }
 
 .header__logo {
-  margin-block-end: 20px;
   font-size: clamp(3.063rem, 1.909rem + 4.923vw, 4.063rem);
 }
 
 .header__title {
   font-size: clamp(0.875rem, 0.226rem + 2.769vw, 1.438rem);
+  margin-block-end: 5px;
 }
 
 .button {
   position: relative;
   border: none;
   padding: 0;
-  font-family: var(--accent-font-family, sans-serif);
+  font-family: var(--accent-font-family, fantasy);
   font-size: 14px;
   text-transform: inherit;
   background: transparent;
@@ -86,7 +86,7 @@
   background-color: transparent;
   font-size: 14px;
   font-weight: var(--font-weight-regular, 400);
-  transition: opacity 0.4s ease;
+  transition: opacity 0.3s ease;
 }
 
 .theme-menu__button:disabled {
@@ -97,6 +97,8 @@
 .theme-menu__button:disabled::before {
   content: "▶";
   position: absolute;
+  top: 0;
+  left: 0;
   animation: play 0.5s infinite ease-in-out alternate;
   width: 14px;
   height: 14px;
@@ -105,7 +107,6 @@
 
 .theme-menu__button:hover {
   opacity: 0.6;
-  transition: 0.3s;
 }
 
 .theme-menu__button:focus-visible {
@@ -120,6 +121,9 @@
   transition: scale 0.3s ease;
   transform-origin: left;
   inline-size: 100%;
+  block-size: 2px;
+  inset-inline-start: 0;
+  inset-block-end: -4px;
   scale: 0;
 }
 
@@ -136,13 +140,13 @@
 
 .card {
   border: 2px solid var(--theme-main-color, #000);
-  color: var(--theme-main-color), #000;
+  color: var(--theme-main-color, #000);
   font-family: inherit;
   background-color: var(--background-color, #fff);
 }
 
 .card__title {
-  padding: 5px 10px;
+  padding: 4px 10px;
   font-size: 18px;
   font-variation-settings: "wght" var(--font-weight-bold, 700);
 }
@@ -156,6 +160,9 @@
   border-block-start: 2px solid var(--theme-main-color, #000);
   border-block-end: 2px solid var(--theme-main-color, #000);
   inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .card__image-decor {
@@ -165,19 +172,36 @@
   z-index: 2;
   opacity: 0.5;
   color: var(--theme-main-color, #000);
-  font-family: var(--accent-font-family, sans-serif);
+  font-family: var(--accent-font-family, "fantasy");
   font-weight: var(--font-weight-regular, 400);
   font-size: 14px;
+  text-transform: uppercase;
   text-shadow: 1px 1px var(--outline-color, #fff),
     -1px -1px var(--outline-color, #fff);
   mix-blend-mode: hard-light;
+}
+
+@media (width <= 375px) {
+  .card__image-decor {
+    position: absolute;
+    top: 25px;
+    right: 13px;
+  }
+}
+
+@supports ((text-stroke: 1px #fff) or (-webkit-text-stroke: 1px #fff)) {
+  .card__image-decor {
+    text-shadow: none;
+    -webkit-text-stroke: 1px var(--outline-color, #fff);
+    text-stroke: 1px var(--outline-color, #fff);
+  }
 }
 
 .card__content {
   display: flex;
   flex-direction: column;
   gap: 27px;
-  padding: 22px 26px 0;
+  padding: 25px 25px 0;
   font-size: 18px;
   line-height: 116%;
   font-variation-settings: "wght" var(--font-weight-regular, 400);
@@ -202,10 +226,6 @@
 
 .card__icon-button:focus-visible {
   border-color: currentColor;
-}
-
-.sparks {
-  opacity: 0;
 }
 
 .card__button {
@@ -252,7 +272,6 @@
   align-items: center;
   gap: 8px;
   padding: 15px;
-  margin-block-end: 100px;
   background-color: var(--background-color, #fff);
   inline-size: clamp(19.125rem, 18.465rem + 2.817vw, 21rem);
 }
@@ -260,6 +279,13 @@
 .content__svg {
   color: var(--button-color, #fff);
   mix-blend-mode: difference;
+}
+
+@media (width <= 375px) {
+  .content__svg {
+    width: 28px;
+    height: 28px;
+  }
 }
 
 .dialog[open] {
@@ -291,7 +317,7 @@
   flex-basis: 0;
   color: var(--theme-main-color, #000);
   font-size: 14px;
-  font-family: var(--accent-font-family, sans-serif);
+  font-family: var(--accent-font-family, "fantasy");
   font-weight: var(--font-weight-regular, 400);
   line-height: 150%;
   text-transform: uppercase;
